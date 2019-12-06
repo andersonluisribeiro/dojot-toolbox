@@ -32,9 +32,8 @@ class Installer():
 
         with open(r'vars.yaml', 'w') as file:
             if any(self.vars):
-                documents = yaml.dump(self.vars, file)
-            else:    
-                documents = ""
+                yaml.dump(self.vars, file)  
+                
         return self        
 
     def encrypt_vars_file(self):

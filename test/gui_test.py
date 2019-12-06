@@ -2,7 +2,6 @@ import sys
 sys.path.append("..")
 
 import unittest
-import mock
 from lib import Gui
 
 class GuiTest(unittest.TestCase):

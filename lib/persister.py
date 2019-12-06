@@ -1,12 +1,12 @@
-from . import Component, Optional
+from . import Component, Optional, Scalable
 
 class Persister(Component):
 
     def ask_use(self):
-        self.variables['use_persister'] = Optional().ask_use("the persistence service")
+        self._vars['use_persister'] = Optional().ask_use("the persistence service")
         return self
 
     def ask_replicas(self):
-        if self.variables['use_persister']:
-            self.variables['persister_replicas'] = Scalable().ask_replicas()
+        if self._vars['use_persister']:
+            self._vars['persister_replicas'] = Scalable().ask_replicas(component="Persister", use=True)
         return self 
