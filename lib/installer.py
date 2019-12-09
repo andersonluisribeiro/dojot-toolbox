@@ -4,23 +4,29 @@ import time
 import yaml
 import getpass
 from pyfiglet import Figlet
-from . import Gui, Cron
+from . import Gui, Cron, Repository
 
 class Installer():
     def __init__(self):
-        self.vars = {}    
+        self.vars = {}
 
     def using(self, component):
         component.vars = self.vars
         return component    
 
+    def clone_repository(self):
+        Repository().clone()          
+
     def say_wellcome(self):
         f = Figlet(font='speed')
         print(f.renderText('dojot'))
-        print("Welcome to Dojot setup tool") 
+        print("Welcome to Dojot setup tool")
+
+    def say_thanks(self):
+        print("\nThanks!\n")     
 
     def create_credentials_file(self):
-        with open(r'credential', 'w') as file:
+        with open(r'ansible-dojot/credential', 'w') as file:
            file.write(getpass.getpass(prompt="\nSet you password for encrypt vars file: ", stream=None))       
 
     def create_vars_file_for(self, components):
@@ -30,7 +36,7 @@ class Installer():
         for component in components:
             self.vars.update(component.vars)
 
-        with open(r'vars.yaml', 'w') as file:
+        with open(r'ansible-dojot/vars.yaml', 'w') as file:
             if any(self.vars):
                 yaml.dump(self.vars, file)  
                 

@@ -21,6 +21,7 @@ setuptools.setup(
      ],
      install_requires=[
         'pyfiglet==0.8.post1',
-        'PyYAML==5.1.2'
+        'PyYAML==5.1.2',
+        'gitpython==3.0.5'
     ]
  )
