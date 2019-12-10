@@ -1,6 +1,7 @@
 from .component import Component
 from .optional import Optional
 from .scalable import Scalable
+from .constants import gui as constants
 
 class Gui(Component):
 
@@ -17,7 +18,7 @@ class Gui(Component):
         return self.replicas        
 
     def ask_use(self):
-        self.use = Optional().ask_use(component=self.name)
+        self.use = Optional().ask_use(constants['use'].format(self.name))
         return self
 
     def ask_replicas(self):

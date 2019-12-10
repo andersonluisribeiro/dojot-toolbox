@@ -1,6 +1,7 @@
 from .component import Component
 from .optional import Optional
 from .scalable import Scalable
+from .constants import cron as constants
 
 class Cron(Component):
 
@@ -8,7 +9,7 @@ class Cron(Component):
         super().__init__()
         self.use = False
         self.replicas = 1
-        self.name = "Cron"
+        self.name = constants['name']
 
     def get_use(self):
         return self.use
@@ -17,7 +18,7 @@ class Cron(Component):
         return self.replicas        
 
     def ask_use(self):
-        self.use = Optional().ask_use(component=self.name)
+        self.use = Optional().ask_use(constants['use'].format(self.name))
         return self
 
     def ask_replicas(self):
