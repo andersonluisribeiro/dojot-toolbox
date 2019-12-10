@@ -5,6 +5,7 @@ from .scalable import Scalable
 from .cron import Cron
 from .kafka import Kafka
 from .kong import Kong
+from .device_manager import DeviceManager
 from .authenticable import Authenticable
 from .quantifiable import Quantifiable
 from .repository import Repository
