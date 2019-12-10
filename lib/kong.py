@@ -2,6 +2,9 @@ from .component import Component
 from .optional import Optional
 from .scalable import Scalable
 from .persistent import Persistent
+from .authenticable import Authenticable
+from .quantifiable import Quantifiable
+from .constants import constants
 
 import getpass
 
@@ -13,30 +16,24 @@ class Kong(Component):
         self.__req_per_hour = 40
         self.__pg_username = "kong"
         self.__pg_password = "kong"
-        self.__name = "API Gateway"         
+        self.__name = constants['kong_name']
+        self.__authenticable = Authenticable()         
+        self.__quantifiable = Quantifiable()
 
     def ask_req_per_minute(self):
-        try:
-            self.__req_per_minute = int(input("\n\nHow many requests per minute are allowed? [{}] ".format( self.__req_per_minute )))
-            return self
-        except:
-            return self
+        self.__req_per_minute = self.__quantifiable.ask_quantity(constants['kong_req_per_minute'].format( self.__req_per_minute ), self.__req_per_minute )
+        return self
 
     def ask_req_per_hour(self):
-        try:
-            self.__req_per_hour = int(input("How many requests per hour are allowed? [{}] ".format( self.__req_per_hour )))
-            return self
-        except:
-            return self        
+        self.__req_per_hour = self.__quantifiable.ask_quantity(constants['kong_req_per_hour'].format( self.__req_per_hour ), self.__req_per_hour)
+        return self
 
     def ask_pg_username(self):
-        username = input("Postgres username for {}? [{}] ".format( self.__name, self.__pg_username ))
-        if username: self.__pg_username = username
+        self.__pg_username = self.__authenticable.ask_username(constants['kong_pg_user'].format( self.__name, self.__pg_username ), self.__pg_username)
         return self
 
     def ask_pg_password(self):
-        password = getpass.getpass(prompt="Postgres password for {}? [{}] ".format( self.__name, self.__pg_password ), stream=None)
-        if password: self.__pg_password = password
+        self.__pg_password = self.__authenticable.ask_password(constants['kong_pg_password'].format( self.__name, self.__pg_password ), self.__pg_password)
         return self   
 
     @property

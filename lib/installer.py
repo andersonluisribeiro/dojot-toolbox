@@ -43,7 +43,7 @@ class Installer():
         return self        
 
     def encrypt_vars_file(self):
-        vault = "ansible-vault encrypt --vault-id ./credential vars.yaml"
+        vault = "ansible-vault encrypt --vault-id ./ansible-dojot/credential ansible-dojot/vars.yaml"
         os.system(vault) == 0 
     
     def call_playbook(self):
