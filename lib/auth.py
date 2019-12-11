@@ -18,6 +18,7 @@ class Auth(Component):
         self.__name = constants['name']
         self.__smtp_host = ""
         self.__smtp_username = ""
+        self.__smtp_password = ""
         self.__password_reset_link = ""
         self.__authenticable = Authenticable()         
         self.__quantifiable = Quantifiable()
@@ -69,5 +70,6 @@ class Auth(Component):
         self._vars['auth_send_mail'] = self.__send_email
         self._vars['auth_smtp_host'] = self.__smtp_host
         self._vars['auth_smtp_username'] = self.__smtp_username
-        self._vars['auth_smtp_password'] = self.__password_reset_link
+        self._vars['auth_smtp_password'] = self.__smtp_password
+        self._vars['auth_smtp_reset_link'] = self.__password_reset_link
         return self._vars
