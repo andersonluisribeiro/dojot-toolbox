@@ -1,6 +1,6 @@
 import os
 import sys
-from git import Repo, Git
+from git import Repo, Git, GitCommandError
 
 class Repository:
 
@@ -15,14 +15,19 @@ class Repository:
         return True if res == "y" else False
 
     def exit(self):
-        print("\nSo delete or change the installer directory before use it!")
+        print("\nSo delete ansible-dojot folder or change the current directory before use \"dojot configure\"")
         print("\nThanks!\n")  
         sys.exit(0)
 
     def make_clone(self):
-        Git(".").clone("https://github.com/dojot/ansible-dojot.git")
-        cloned_repo = Repo(self.repo_dir)
-        cloned_repo.git.checkout('release/v0.4.1')     
+        try:
+            Git(".").clone("https://github.com/dojot/ansible-dojot.git")
+            cloned_repo = Repo(self.repo_dir)
+            cloned_repo.git.checkout('release/v0.4.1')
+        except GitCommandError:
+             print("\nCan't clone dojot repository. Verify your internet connection, please.\n") 
+             sys.exit(0)
+             
 
     def clone(self):
         if self.repo_already_exists():

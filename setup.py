@@ -5,8 +5,8 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
      name='dojot-cli',  
-     version='0.0.1',
-     scripts=['dojot-cli'],
+     version='0.0.2',
+     scripts=['dojot'],
      author="Anderson Luis Ribeiro",
      author_email="anderson.luis.rib@gmail.com",
      description="A CLI for dojot",
@@ -22,6 +22,7 @@ setuptools.setup(
      install_requires=[
         'pyfiglet==0.8.post1',
         'PyYAML==5.1.2',
-        'gitpython==3.0.5'
+        'gitpython==3.0.5',
+        'termcolor==1.1.0'
     ]
  )

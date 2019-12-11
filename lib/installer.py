@@ -2,13 +2,19 @@ import json
 import os
 import time
 import yaml
+import sys
 import getpass
+from termcolor import colored
 from pyfiglet import Figlet
 from . import Gui, Cron, Repository
 
 class Installer():
-    def __init__(self):
+    def __init__(self, argv):
         self.vars = {}
+        self.argv = argv
+
+    def is_for_configuration(self):
+        return len(self.argv) > 1 and self.argv[1] == "configure"    
 
     def using(self, component):
         component.vars = self.vars
@@ -19,8 +25,8 @@ class Installer():
 
     def say_wellcome(self):
         f = Figlet(font='speed')
-        print(f.renderText('dojot'))
-        print("Welcome to Dojot setup tool")
+        print(colored(f.renderText('dojot'), 'red'))
+        print(colored("Welcome to Dojot CLI", 'green', attrs=['bold']))
 
     def say_thanks(self):
         print("\nThanks!\n")     

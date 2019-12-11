@@ -35,7 +35,7 @@ class Auth(Component):
         self.__pg_password = self.__authenticable.ask_password(constants['pg_password'].format( self.__name, self.__pg_password ), self.__pg_password)
         return self   
 
-    def and_if_should_send_mail(self):
+    def ask_if_should_send_mail(self):
         self.__send_email = self.__optional.ask_use(constants['send_mail'])
         return self  
 
@@ -67,4 +67,7 @@ class Auth(Component):
         self._vars['auth_pg_username'] = self.__pg_username
         self._vars['auth_pg_password'] = self.__pg_password
         self._vars['auth_send_mail'] = self.__send_email
+        self._vars['auth_smtp_host'] = self.__smtp_host
+        self._vars['auth_smtp_username'] = self.__smtp_username
+        self._vars['auth_smtp_password'] = self.__password_reset_link
         return self._vars
