@@ -1,9 +1,7 @@
 class Optional:
 
-    # def ask_use(self, component):
-    #     res = input("\n\nWould you like to add {} ? (y/n) [n] ".format( component ))
-    #     return True if res == "y" else False
-
-    def ask_use(self, phrase):
+    def ask_use(self, phrase, default=False):
         res = input(phrase)
-        return True if res == "y" else False    
+        if (not res) or (res != "y" and res != "n"):
+            return default
+        return True if res == "y" else False

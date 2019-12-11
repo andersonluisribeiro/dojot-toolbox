@@ -37,7 +37,7 @@ class Auth(Component):
         return self   
 
     def ask_if_should_send_mail(self):
-        self.__send_email = self.__optional.ask_use(constants['send_mail'])
+        self.__send_email = self.__optional.ask_use(constants['send_mail'], default=self.__send_email)
         return self  
 
     def and_smtp_host(self):
@@ -64,12 +64,12 @@ class Auth(Component):
 
     @property
     def vars(self):
-        self._vars['auth_replicas'] = self.__replicas
-        self._vars['auth_pg_username'] = self.__pg_username
-        self._vars['auth_pg_password'] = self.__pg_password
-        self._vars['auth_send_mail'] = self.__send_email
-        self._vars['auth_smtp_host'] = self.__smtp_host
-        self._vars['auth_smtp_username'] = self.__smtp_username
-        self._vars['auth_smtp_password'] = self.__smtp_password
-        self._vars['auth_smtp_reset_link'] = self.__password_reset_link
+        self._vars['dojot_auth_replicas'] = self.__replicas
+        self._vars['dojot_psql_auth_user'] = self.__pg_username
+        self._vars['dojot_psql_auth_passwd'] = self.__pg_password
+        self._vars['dojot_auth_email_enabled'] = self.__send_email
+        self._vars['dojot_auth_email_host'] = self.__smtp_host
+        self._vars['dojot_auth_email_user'] = self.__smtp_username
+        self._vars['dojot_auth_email_passwd'] = self.__smtp_password
+        self._vars['dojot_auth_smtp_reset_link'] = self.__password_reset_link
         return self._vars
