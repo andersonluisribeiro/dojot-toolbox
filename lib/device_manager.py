@@ -17,6 +17,7 @@ class DeviceManager(Component):
         self.__name = constants['name']
         self.__authenticable = Authenticable()         
         self.__quantifiable = Quantifiable()
+        self.show_name(self.__name)
 
     def ask_pg_username(self):
         self.__pg_username = self.__authenticable.ask_username(constants['pg_user'].format( self.__name, self.__pg_username ), self.__pg_username)

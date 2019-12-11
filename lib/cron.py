@@ -10,6 +10,7 @@ class Cron(Component):
         self.use = False
         self.replicas = 1
         self.name = constants['name']
+        self.show_name(self.name)
 
     def get_use(self):
         return self.use
@@ -28,5 +29,5 @@ class Cron(Component):
     @property
     def vars(self):
         self._vars['use_cron'] = self.use
-        self._vars['cron_replicas'] = self.replicas
+        self._vars['dojot_cron_replicas'] = self.replicas
         return self._vars

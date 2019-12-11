@@ -7,11 +7,13 @@ class Kafka(Component):
 
     def __init__(self):
         super().__init__()
+        self.__name = "Apache Kafka"
         self.__replicas = 1
         self.__persistence_time = 168
         self.__volume_use = False
         self.__volume_size = 10
-        self.name = "Apache Kafka"
+        self.show_name(self.__name)
+        
 
     @property
     def persistence_time(self):
@@ -19,17 +21,17 @@ class Kafka(Component):
 
     def ask_persistence_time(self):
         try:
-            self.__persistence_time = int(input("\n\nHow many hours would you like the data to be kept in Apache Kafka (0 for indeterminate)? [168] "))
+            self.__persistence_time = int(input("How many hours would you like the data to be kept in Apache Kafka (0 for indeterminate)? [168] "))
             return self
         except:
             return self
 
     def ask_persistence_volume(self):
-        self.__volume_use = Persistent().ask_persistence_volume(component=self.name)
+        self.__volume_use = Persistent().ask_persistence_volume(component=self.__name)
         return self
 
     def ask_volume_size(self):
-        self.__volume_size = Persistent().ask_volume_size(component=self.name, use=self.__volume_use, default=self.__volume_size)
+        self.__volume_size = Persistent().ask_volume_size(component=self.__name, use=self.__volume_use, default=self.__volume_size)
         return self
 
 

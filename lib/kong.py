@@ -19,6 +19,7 @@ class Kong(Component):
         self.__name = constants['name']
         self.__authenticable = Authenticable()         
         self.__quantifiable = Quantifiable()
+        self.show_name(self.__name)
 
     def ask_req_per_minute(self):
         self.__req_per_minute = self.__quantifiable.ask_quantity(constants['req_per_minute'].format( self.__req_per_minute ), self.__req_per_minute )

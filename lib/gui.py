@@ -10,6 +10,7 @@ class Gui(Component):
         self.use = False
         self.replicas = 1
         self.name = "GUI"
+        self.show_name(self.name)
 
     def get_use(self):
         return self.use

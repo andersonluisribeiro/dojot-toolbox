@@ -23,6 +23,7 @@ class Auth(Component):
         self.__authenticable = Authenticable()         
         self.__quantifiable = Quantifiable()
         self.__optional = Optional()
+        self.show_name(self.__name)
 
     def ask_how_many_replicas(self):
         self.__replicas = self.__quantifiable.ask_quantity(constants['replicas'].format( self.__replicas ), self.__replicas)

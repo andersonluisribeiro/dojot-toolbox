@@ -1,6 +1,6 @@
 kong = dict(
     name = "API Gateway",
-    req_per_minute = "\n\nHow many requests per minute are allowed? [{}]: ",
+    req_per_minute = "How many requests per minute are allowed? [{}]: ",
     req_per_hour = "How many requests per hour are allowed? [{}]: ",
     pg_user = "{} postgres username [{}]: ",
     pg_password = "{} postgres password [{}]: "
@@ -8,13 +8,13 @@ kong = dict(
 
 devm = dict(
     name = "Device Manager",
-    pg_user = "\n\n{} postgres username [{}]: ",
+    pg_user = "{} postgres username [{}]: ",
     pg_password = "{} postgres password [{}]: "
 )
 
 auth = dict(
     name = "Authentication System",
-    replicas = "\n\nHow many replicas would you like for Authentication System? [{}]: ",
+    replicas = "How many replicas would you like for Authentication System? [{}]: ",
     pg_user = "{} postgres username [{}]: ",
     pg_password = "{} postgres password [{}]: ",
     send_mail = "Would you like that Auth sends mail for user registration or reset password? (y/n) [y]: ",
@@ -26,10 +26,18 @@ auth = dict(
 
 cron = dict(
     name = "Cron",
-    use = "\n\nWould you like to add {} ? (y/n) [n]: "
+    use = "Would you like to add {} ? (y/n) [n]: "
 )
 
 gui = dict(
     name = "GUI",
-    use = "\n\nWould you like to add {} ? (y/n) [n]: "
+    use = "Would you like to add {} ? (y/n) [n]: "
+)
+
+postgres = dict(
+    name = "PostgreSQL",
+    super_user = "Super {} username [{}]: ",
+    super_password = "Super {} password [{}]: ",
+    use_persistent_volume = "Do you want to use persistent volumes for {}?: (y/n) [n]: ",
+    volume_size = "What is the volume size in GB for {}? [{}]: "
 )

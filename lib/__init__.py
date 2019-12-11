@@ -7,6 +7,7 @@ from .kafka import Kafka
 from .kong import Kong
 from .device_manager import DeviceManager
 from .auth import Auth
+from .postgres import Postgres
 from .authenticable import Authenticable
 from .quantifiable import Quantifiable
 from .repository import Repository

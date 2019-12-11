@@ -29,7 +29,7 @@ class Installer():
         print(colored("Welcome to Dojot CLI", 'green', attrs=['bold']))
 
     def say_thanks(self):
-        print("\nThanks!\n")     
+        print("\n\nThanks!\n")     
 
     def create_credentials_file(self):
         with open(r'ansible-dojot/credential', 'w') as file:
