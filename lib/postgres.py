@@ -23,11 +23,13 @@ class Postgres(Component):
         self.__quantifiable = Quantifiable()
 
     def ask_super_username(self):
-        self.__super_username = self.__authenticable.ask_username(constants['super_user'].format( self.__super_username ), self.__super_username)
+        question = constants['super_user'].format( self.__super_username )
+        self.__super_username = self.__authenticable.ask_username(question, self.__super_username)
         return self
 
     def and_super_password(self):
-        self.__super_password = self.__authenticable.ask_password(constants['super_password'].format( self.__super_password ), self.__super_password)
+        question = constants['super_password'].format( self.__super_password )
+        self.__super_password = self.__authenticable.ask_password(question, self.__super_password)
         return self
 
     def and_if_use_persistent_volume(self):
@@ -36,7 +38,8 @@ class Postgres(Component):
 
     def and_volume_size(self):
         if self.__use_persistent_volume:
-            self.__volume_size = self.__quantifiable.ask_quantity(constants['volume_size'].format( self.__volume_size))
+            question = constants['volume_size'].format( self.__volume_size)
+            self.__volume_size = self.__quantifiable.ask_quantity(question)
         return self
 
     @property
