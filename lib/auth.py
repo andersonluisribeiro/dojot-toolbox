@@ -7,60 +7,71 @@ from .constants import auth as constants
 
 import getpass
 
+
 class Auth(Component):
 
     def __init__(self):
         super().__init__()
+        self._visible_name = constants['name']
         self.__replicas = 1
         self.__pg_username = "auth"
         self.__pg_password = "auth"
         self.__send_email = True
-        self.__name = constants['name']
-        self._visible_name = constants['name']
         self.__smtp_host = ""
         self.__smtp_username = ""
         self.__smtp_password = ""
         self.__password_reset_link = ""
-        self.__authenticable = Authenticable()         
+        self.__authenticable = Authenticable()
         self.__quantifiable = Quantifiable()
         self.__optional = Optional()
 
     def ask_how_many_replicas(self):
-        self.__replicas = self.__quantifiable.ask_quantity(constants['replicas'].format( self.__replicas ), self.__replicas)
-        return self    
+        question = constants['replicas'].format(self.__replicas)
+        self.__replicas = self.__quantifiable.ask_quantity(
+            question, self.__replicas)
+        return self
 
     def and_pg_username(self):
-        self.__pg_username = self.__authenticable.ask_username(constants['pg_user'].format( self.__name, self.__pg_username ), self.__pg_username)
+        question = constants['pg_user'].format(self.__pg_username)
+        self.__pg_username = self.__authenticable.ask_username(
+            question, self.__pg_username)
         return self
 
     def and_pg_password(self):
-        self.__pg_password = self.__authenticable.ask_password(constants['pg_password'].format( self.__name, self.__pg_password ), self.__pg_password)
-        return self   
+        question = constants['pg_password'].format(self.__pg_password)
+        self.__pg_password = self.__authenticable.ask_password(
+            question, self.__pg_password)
+        return self
 
     def ask_if_should_send_mail(self):
-        self.__send_email = self.__optional.ask_use(constants['send_mail'], default=self.__send_email)
-        return self  
+        self.__send_email = self.__optional.ask_use(
+            constants['send_mail'], default=self.__send_email)
+        return self
 
     def and_smtp_host(self):
         if self.__send_email:
             host = input(constants['smtp_host'])
-            if host: self.__smtp_host = host
+            if host:
+                self.__smtp_host = host
         return self
 
     def and_smtp_username(self):
         if self.__send_email:
-            self.__smtp_username = self.__authenticable.ask_username(constants['smtp_user'], self.__pg_username)
+            self.__smtp_username = self.__authenticable.ask_username(
+                constants['smtp_user'], self.__pg_username)
         return self
 
     def and_smtp_password(self):
         if self.__send_email:
-            self.__smtp_password = self.__authenticable.ask_password(constants['smtp_password'], self.__pg_password)
-        return self 
+            self.__smtp_password = self.__authenticable.ask_password(
+                constants['smtp_password'], self.__pg_password)
+        return self
 
     def and_password_reset_link(self):
         if self.__send_email:
             link = input(constants['password_reset_link'])
-            if link: self.__password_reset_link = link
+            if link:
+                self.__password_reset_link = link
         return self
 
     @property

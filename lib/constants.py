@@ -8,15 +8,15 @@ kong = dict(
 
 devm = dict(
     name = "Device Manager",
-    pg_user = "{} postgres username [{}]: ",
-    pg_password = "{} postgres password [{}]: "
+    pg_user = "Device Manager postgres username [{}]: ",
+    pg_password = "Device Manager postgres password [{}]: "
 )
 
 auth = dict(
     name = "Authentication System",
     replicas = "How many replicas would you like for Authentication System? [{}]: ",
-    pg_user = "{} postgres username [{}]: ",
-    pg_password = "{} postgres password [{}]: ",
+    pg_user = "Authentication System postgres username [{}]: ",
+    pg_password = "Authentication System postgres password [{}]: ",
     send_mail = "Would you like that Auth sends mail for user registration or reset password? (y/n) [y]: ",
     smtp_host = "Auth SMTP host: ",
     smtp_user = "Auth SMTP user: ",

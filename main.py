@@ -1,5 +1,5 @@
 import sys
-from lib import Installer, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres
+from lib import Installer, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, MongoDB
 
 
 installer = Installer(sys.argv)
@@ -39,11 +39,19 @@ if installer.is_for_configuration():
             .and_smtp_username() \
             .and_smtp_password() \
             .and_password_reset_link()
-    
+
         postgres = Postgres() \
             .show_name() \
             .ask_super_username() \
             .and_super_password() \
+            .and_if_use_persistent_volume() \
+            .and_volume_size()
+
+        mongo = MongoDB() \
+            .show_name() \
+            .ask_super_username() \
+            .and_super_password() \
+            .and_persistence_time() \
             .and_if_use_persistent_volume() \
             .and_volume_size()
 
@@ -57,10 +65,9 @@ if installer.is_for_configuration():
             .ask_use() \
             .ask_replicas()
 
-
         installer \
-            .create_vars_file_for( \
-                [kafka, kong, cron, gui, devm, auth, postgres] \
+            .create_vars_file_for(
+                [kafka, kong, cron, gui, devm, auth, postgres, mongo]
             ) \
             .call_ansible()
 
@@ -68,4 +75,3 @@ if installer.is_for_configuration():
 
     except KeyboardInterrupt:
         installer.say_thanks()
-
