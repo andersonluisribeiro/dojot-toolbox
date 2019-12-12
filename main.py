@@ -12,21 +12,25 @@ if installer.is_for_configuration():
         installer.clone_repository()
 
         kafka = Kafka() \
+            .show_name() \
             .ask_persistence_time() \
             .ask_persistence_volume() \
             .ask_volume_size()
 
         kong = Kong() \
+            .show_name() \
             .ask_req_per_minute() \
             .ask_req_per_hour() \
             .ask_pg_username() \
             .ask_pg_password()
 
         devm = DeviceManager() \
+            .show_name() \
             .ask_pg_username() \
             .ask_pg_password()
 
         auth = Auth() \
+            .show_name() \
             .ask_how_many_replicas() \
             .and_pg_username() \
             .and_pg_password() \
@@ -37,16 +41,19 @@ if installer.is_for_configuration():
             .and_password_reset_link()
     
         postgres = Postgres() \
+            .show_name() \
             .ask_super_username() \
             .and_super_password() \
             .and_if_use_persistent_volume() \
             .and_volume_size()
 
         cron = Cron() \
+            .show_name() \
             .ask_use() \
             .ask_replicas()
 
         gui = Gui() \
+            .show_name() \
             .ask_use() \
             .ask_replicas()
 

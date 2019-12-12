@@ -10,7 +10,7 @@ class Cron(Component):
         self.use = False
         self.replicas = 1
         self.name = constants['name']
-        self.show_name(self.name)
+        self._visible_name =  constants['name']
 
     def get_use(self):
         return self.use

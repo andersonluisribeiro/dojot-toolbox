@@ -16,6 +16,7 @@ class Auth(Component):
         self.__pg_password = "auth"
         self.__send_email = True
         self.__name = constants['name']
+        self._visible_name = constants['name']
         self.__smtp_host = ""
         self.__smtp_username = ""
         self.__smtp_password = ""
@@ -23,7 +24,6 @@ class Auth(Component):
         self.__authenticable = Authenticable()         
         self.__quantifiable = Quantifiable()
         self.__optional = Optional()
-        self.show_name(self.__name)
 
     def ask_how_many_replicas(self):
         self.__replicas = self.__quantifiable.ask_quantity(constants['replicas'].format( self.__replicas ), self.__replicas)

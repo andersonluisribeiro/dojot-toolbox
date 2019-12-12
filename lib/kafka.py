@@ -8,12 +8,11 @@ class Kafka(Component):
     def __init__(self):
         super().__init__()
         self.__name = "Apache Kafka"
+        self._visible_name = "Apache Kafka"
         self.__replicas = 1
         self.__persistence_time = 168
         self.__volume_use = False
         self.__volume_size = 10
-        self.show_name(self.__name)
-        
 
     @property
     def persistence_time(self):

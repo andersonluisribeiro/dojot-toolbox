@@ -13,6 +13,7 @@ class Postgres(Component):
     def __init__(self):
         super().__init__()
         self.__name = constants['name']
+        self._visible_name = constants['name']
         self.__super_username = "postgres"
         self.__super_password = "postgres"
         self.__use_persistent_volume = False
@@ -21,8 +22,6 @@ class Postgres(Component):
         self.__persistent = Persistent()     
         self.__optional = Optional()
         self.__quantifiable = Quantifiable()
-        self.show_name(self.__name)
-
 
     def ask_super_username(self):
         self.__super_username = self.__authenticable.ask_username(constants['super_user'].format( self.__name, self.__super_username ), self.__super_username)
