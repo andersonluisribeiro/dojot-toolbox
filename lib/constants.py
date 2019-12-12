@@ -36,8 +36,17 @@ gui = dict(
 
 postgres = dict(
     name = "PostgreSQL",
-    super_user = "Super {} username [{}]: ",
-    super_password = "Super {} password [{}]: ",
-    use_persistent_volume = "Do you want to use persistent volumes for {}?: (y/n) [n]: ",
-    volume_size = "What is the volume size in GB for {}? [{}]: "
+    super_user = "Super PostgreSQL username [{}]: ",
+    super_password = "Super PostgreSQL password [{}]: ",
+    use_persistent_volume = "Do you want to use persistent volumes for PostgreSQL?: (y/n) [n]: ",
+    volume_size = "What is the volume size in GB for PostgreSQL? [{}]: "
+)
+
+mongo = dict(
+    name = "MongoDB",
+    super_user = "Super MongoDB username [{}]: ",
+    super_password = "Super MongoDB password [{}]: ",
+    persistence_time = "How many hours would you like the data to be kept in MongoDB (0 for indeterminate) ? [{}]: ",
+    use_persistent_volume = "Do you want to use persistent volumes for MongoDB?: (y/n) [n]: ",
+    volume_size = "What is the volume size in GB for MongoDB? [{}]: "
 )

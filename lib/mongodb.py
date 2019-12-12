@@ -4,17 +4,18 @@ from .persistent import Persistent
 from .optional import Optional
 from .quantifiable import Quantifiable
 from .authenticable import Authenticable
-from .constants import postgres as constants
+from .constants import mongo as constants
 
 import getpass
 
-class Postgres(Component):
+class MongoDB(Component):
 
     def __init__(self):
         super().__init__()
         self._visible_name = constants['name']
-        self.__super_username = "postgres"
-        self.__super_password = "postgres"
+        self.__super_username = "mongodb"
+        self.__super_password = "mongodb"
+        self.__persistence_time = 168
         self.__use_persistent_volume = False
         self.__volume_size = 10
         self.__authenticable = Authenticable()  
@@ -30,6 +31,10 @@ class Postgres(Component):
         self.__super_password = self.__authenticable.ask_password(constants['super_password'].format( self.__super_password ), self.__super_password)
         return self
 
+    def and_persistence_time(self):
+        self.__persistence_time = self.__quantifiable.ask_quantity(constants['persistence_time'].format( self.__persistence_time), default=self.__persistence_time)
+        return self
+
     def and_if_use_persistent_volume(self):
         self.__use_persistent_volume = self.__optional.ask_use(constants['use_persistent_volume'])
         return self
@@ -41,8 +46,9 @@ class Postgres(Component):
 
     @property
     def vars(self):
-        self._vars['dojot_psql_super_user'] = self.__super_username
-        self._vars['dojot_psql_super_passwd'] = self.__super_password
-        self._vars['dojot_psql_persistent_volumes'] = self.__use_persistent_volume
-        self._vars['dojot_psql_volume_size'] = self.__volume_size
+        self._vars['dojot_mongodb_super_user'] = self.__super_username
+        self._vars['dojot_mongodb_super_passwd'] = self.__super_password
+        self._vars['dojot_mongodb_persistent_volumes'] = self.__use_persistent_volume
+        self._vars['dojot_mongodb_volume_size'] = self.__volume_size
+        self._vars['dojot_persister_persistence_time'] = self.__persistence_time
         return self._vars
