@@ -66,7 +66,7 @@ if installer.is_for_configuration():
             .ask_replicas()
 
         installer \
-            .create_vars_file_for(
+            .create_vars_file_from(
                 [kafka, kong, cron, gui, devm, auth, postgres, mongo]
             ) \
             .call_ansible()

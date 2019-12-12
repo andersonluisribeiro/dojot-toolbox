@@ -35,7 +35,7 @@ class Installer():
         with open(r'ansible-dojot/credential', 'w') as file:
            file.write(getpass.getpass(prompt="\nSet you password for encrypt vars file: ", stream=None))       
 
-    def create_vars_file_for(self, components):
+    def create_vars_file_from(self, components):
         if not isinstance(components, list):
             raise ValueError("A list of components is necessary for create vars file")
 
