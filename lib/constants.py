@@ -50,3 +50,10 @@ mongo = dict(
     use_persistent_volume = "Do you want to use persistent volumes for MongoDB?: (y/n) [n]: ",
     volume_size = "What is the volume size in GB for MongoDB? [{}]: "
 )
+
+iotagent_mqtt = dict(
+    name = "IoT Agent MQTT",
+    use = "Would you like to add IoT Agent MQTT? (y/n) [y]: ",
+    use_insecure_mqtt = "Do you want to enable insecure mode for IoT Agent MQTT? (y/n) [n]: ",
+    replicas = "How many instances would you like for IoT Agent MQTT? [{}]: "
+)

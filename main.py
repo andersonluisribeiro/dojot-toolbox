@@ -1,5 +1,5 @@
 import sys
-from lib import Installer, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, MongoDB
+from lib import Installer, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, MongoDB, IoTAgentMQTT
 
 
 installer = Installer(sys.argv)
@@ -55,19 +55,25 @@ if installer.is_for_configuration():
             .and_if_use_persistent_volume() \
             .and_volume_size()
 
-        cron = Cron() \
+        gui = Gui() \
             .show_name() \
             .ask_use() \
             .ask_replicas()
 
-        gui = Gui() \
+        mqtt = IoTAgentMQTT() \
+            .show_name() \
+            .ask_use() \
+            .and_replicas() \
+            .and_use_insecure_mqtt()            
+
+        cron = Cron() \
             .show_name() \
             .ask_use() \
             .ask_replicas()
 
         installer \
             .create_vars_file_from(
-                [kafka, kong, cron, gui, devm, auth, postgres, mongo]
+                [kafka, kong, cron, gui, devm, auth, postgres, mongo, mqtt]
             ) \
             .call_ansible()
 
