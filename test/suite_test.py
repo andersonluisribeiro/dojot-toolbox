@@ -4,6 +4,7 @@ from . import *
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(IoTAgentMoscaTest())
+    suite.addTest(IoTAgentLWM2MTest())
     suite.addTest(PostgresTest())
     suite.addTest(AuthTest())
     suite.addTest(AuthenticableTest())

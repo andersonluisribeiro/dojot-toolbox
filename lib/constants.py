@@ -57,3 +57,8 @@ iotagent_mqtt = dict(
     use_insecure_mqtt = "Do you want to enable insecure mode for IoT Agent MQTT? (y/n) [n]: ",
     replicas = "How many instances would you like for IoT Agent MQTT? [{}]: "
 )
+
+iotagent_lwm2m = dict(
+    name = "IoT Agent LWM2M",
+    use = "Would you like to add IoT Agent LWM2M? (y/n) [y]: "
+)

@@ -1,5 +1,5 @@
 import sys
-from lib import Installer, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, MongoDB, IoTAgentMQTT
+from lib import Installer, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, MongoDB, IoTAgentMQTT, IoTAgentLWM2M
 
 
 installer = Installer(sys.argv)
@@ -64,7 +64,11 @@ if installer.is_for_configuration():
             .show_name() \
             .ask_use() \
             .and_replicas() \
-            .and_use_insecure_mqtt()            
+            .and_use_insecure_mqtt()   
+
+        lwm2m = IoTAgentLWM2M() \
+            .show_name() \
+            .ask_use()
 
         cron = Cron() \
             .show_name() \
@@ -73,7 +77,7 @@ if installer.is_for_configuration():
 
         installer \
             .create_vars_file_from(
-                [kafka, kong, cron, gui, devm, auth, postgres, mongo, mqtt]
+                [kafka, kong, devm, auth, postgres, mongo, gui, mqtt, lwm2m, cron]
             ) \
             .call_ansible()
 
