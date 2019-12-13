@@ -1,4 +1,14 @@
 
+repository = dict(
+    use_existent_repository = "\nYou already have a ansible-dojot repository. Do you want to use that? (y/n) [n]: ",
+    delete_repository = "\nSo delete ansible-dojot folder or change the current directory before use \"dojot configure\"\nThanks!\n",
+    clonning_repository = "Clonning dojot repository for configuration ",
+    cant_clone = "\nCan't clone dojot repository. Verify your internet connection, please.\n",
+    repo_dir = "ansible-dojot",
+    repository_url = "https://github.com/dojot/ansible-dojot.git",
+    current_branch = "release/v0.4.1"
+)
+
 kafka = dict(
     name = "Apache Kafka",
     persistence_time = "How many hours would you like the data to be kept in Apache Kafka (0 for indeterminate)? [{}]: ",

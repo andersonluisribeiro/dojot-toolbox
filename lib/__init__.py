@@ -17,3 +17,4 @@ from .repository import Repository
 from .persister import Persister
 from .persistent import Persistent
 from .installer import Installer
+from .progress import Progress
