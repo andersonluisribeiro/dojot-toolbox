@@ -1,3 +1,11 @@
+
+kafka = dict(
+    name = "Apache Kafka",
+    persistence_time = "How many hours would you like the data to be kept in Apache Kafka (0 for indeterminate)? [{}]: ",
+    use_persistent_volume = "Do you want to use persistent volumes for Apache Kafka: (y/n) [n]: ",
+    volume_size = "What is the volume size in GB for Apache Kafka? [{}]: "
+)
+
 kong = dict(
     name = "API Gateway",
     req_per_minute = "How many requests per minute are allowed? [{}]: ",

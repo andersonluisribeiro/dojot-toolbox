@@ -11,7 +11,7 @@ from pathlib import Path
 class InstallerTest(unittest.TestCase):
 
     def read_file(self):
-        file = open('vars.yaml')
+        file = open('ansible-dojot/vars.yaml')
         content = file.read()
         file.close()
         return content
