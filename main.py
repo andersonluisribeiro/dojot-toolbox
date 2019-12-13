@@ -14,8 +14,8 @@ if installer.is_for_configuration():
         kafka = Kafka() \
             .show_name() \
             .ask_persistence_time() \
-            .ask_persistence_volume() \
-            .ask_volume_size()
+            .and_if_use_persistent_volume() \
+            .and_volume_size()
 
         kong = Kong() \
             .show_name() \
