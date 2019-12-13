@@ -5,7 +5,7 @@ import unittest
 from lib import Scalable
 from unittest.mock import patch
 
-class CronTest(unittest.TestCase):
+class ScalableTest(unittest.TestCase):
 
     def test_ask_replicas_for_user(self):
         with patch('builtins.input', return_value="2"):

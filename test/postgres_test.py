@@ -5,7 +5,7 @@ import unittest
 from lib import Postgres
 from unittest.mock import patch
 
-class AuthTest(unittest.TestCase):
+class PostgresTest(unittest.TestCase):
 
     def setUp(self):
         self.postgres = Postgres()

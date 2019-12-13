@@ -5,7 +5,7 @@ import unittest
 from lib import Kong
 from unittest.mock import patch
 
-class AuthTest(unittest.TestCase):
+class KongTest(unittest.TestCase):
 
     def setUp(self):
         self.kong = Kong()
