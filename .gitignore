@@ -3,3 +3,4 @@ dist/
 lib/__pycache__/
 test/__pycache__/
 dojot_cli.egg-info/
+*.pyc

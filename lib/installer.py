@@ -7,6 +7,7 @@ import getpass
 from termcolor import colored
 from pyfiglet import Figlet
 from . import Gui, Cron, Repository
+from .constants import installer as constants
 
 class Installer():
     def __init__(self, argv):
@@ -14,7 +15,10 @@ class Installer():
         self.argv = argv
 
     def is_for_configuration(self):
-        return len(self.argv) > 1 and self.argv[1] == "configure"       
+        return len(self.argv) > 1 and self.argv[1] == "configure"  
+
+    def should_deploy(self):
+        return len(self.argv) > 2 and self.argv[2] == "--deploy"           
 
     def clone_repository(self):
         Repository().clone()          
@@ -59,7 +63,9 @@ class Installer():
     def call_ansible(self):
         self.create_credentials_file()
         self.encrypt_vars_file()
-        self.call_playbook()
+        if self.should_deploy():
+            print(constants["deploy_dojot"])
+            self.call_playbook()
         
 
         
