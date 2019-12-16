@@ -14,11 +14,7 @@ class Installer():
         self.argv = argv
 
     def is_for_configuration(self):
-        return len(self.argv) > 1 and self.argv[1] == "configure"    
-
-    def using(self, component):
-        component.vars = self.vars
-        return component    
+        return len(self.argv) > 1 and self.argv[1] == "configure"       
 
     def clone_repository(self):
         Repository().clone()          
@@ -29,7 +25,10 @@ class Installer():
         print(colored("Welcome to Dojot CLI", 'green', attrs=['bold']))
 
     def say_thanks(self):
-        print("\n\nThanks!\n")     
+        print("\n\nThanks!\n")
+
+    def say_bye(self):
+        print("\n\nBye!\n")         
 
     def create_credentials_file(self):
         with open(r'ansible-dojot/credential', 'w') as file:
@@ -53,13 +52,14 @@ class Installer():
         os.system(vault) == 0 
     
     def call_playbook(self):
-        playbook = "ansible-playbook -u cpqd -K -k -i inventories/example_local deploy.yaml -e @vars.yaml --vault-id ./credential"
+        playbook = "ansible-playbook -u cpqd -K -k -i ansible-dojot/inventories/example_local ansible-dojot/deploy.yaml -e @ansible-dojot/vars.yaml --vault-id ansible-dojot/credential"
         if os.system(playbook) == 0:
-            os.remove("credential")
+            os.remove("ansible-dojot/credential")
 
     def call_ansible(self):
         self.create_credentials_file()
         self.encrypt_vars_file()
+        self.call_playbook()
         
 
         

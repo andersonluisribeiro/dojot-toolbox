@@ -31,7 +31,6 @@ if installer.is_for_configuration():
 
         auth = Auth() \
             .show_name() \
-            .ask_how_many_replicas() \
             .and_pg_username() \
             .and_pg_password() \
             .ask_if_should_send_mail() \
@@ -57,8 +56,7 @@ if installer.is_for_configuration():
 
         gui = Gui() \
             .show_name() \
-            .ask_use() \
-            .ask_replicas()
+            .ask_use()
 
         mqtt = IoTAgentMQTT() \
             .show_name() \
@@ -72,8 +70,7 @@ if installer.is_for_configuration():
 
         cron = Cron() \
             .show_name() \
-            .ask_use() \
-            .ask_replicas()
+            .ask_use()
 
         installer \
             .create_vars_file_from(
@@ -84,4 +81,4 @@ if installer.is_for_configuration():
         installer.say_thanks()
 
     except KeyboardInterrupt:
-        installer.say_thanks()
+        installer.say_bye()

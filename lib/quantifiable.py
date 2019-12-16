@@ -4,5 +4,5 @@ class Quantifiable:
         try:
             quantity = int(input(phrase))
             return quantity
-        except:
+        except ValueError:
             return default

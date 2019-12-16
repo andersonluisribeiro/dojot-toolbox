@@ -13,7 +13,6 @@ class Auth(Component):
     def __init__(self):
         super().__init__()
         self._visible_name = constants['name']
-        self.__replicas = 1
         self.__pg_username = "auth"
         self.__pg_password = "auth"
         self.__send_email = True
@@ -24,12 +23,6 @@ class Auth(Component):
         self.__authenticable = Authenticable()
         self.__quantifiable = Quantifiable()
         self.__optional = Optional()
-
-    def ask_how_many_replicas(self):
-        question = constants['replicas'].format(self.__replicas)
-        self.__replicas = self.__quantifiable.ask_quantity(
-            question, self.__replicas)
-        return self
 
     def and_pg_username(self):
         question = constants['pg_user'].format(self.__pg_username)
@@ -76,7 +69,6 @@ class Auth(Component):
 
     @property
     def vars(self):
-        self._vars['dojot_auth_replicas'] = self.__replicas
         self._vars['dojot_psql_auth_user'] = self.__pg_username
         self._vars['dojot_psql_auth_passwd'] = self.__pg_password
         self._vars['dojot_auth_email_enabled'] = self.__send_email

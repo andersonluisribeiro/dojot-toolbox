@@ -1,7 +1,7 @@
 
 repository = dict(
     use_existent_repository = "\nYou already have a ansible-dojot repository. Do you want to use that? (y/n) [n]: ",
-    delete_repository = "\nSo delete ansible-dojot folder or change the current directory before use \"dojot configure\"\nThanks!\n",
+    delete_repository = "\nSo delete ansible-dojot folder or change the current directory before use \"dojot configure\"\n\nThanks!\n",
     clonning_repository = "Clonning dojot repository for configuration ",
     cant_clone = "\nCan't clone dojot repository. Verify your internet connection, please.\n",
     repo_dir = "ansible-dojot",

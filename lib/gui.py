@@ -8,7 +8,7 @@ class Gui(Component):
         super().__init__()
         self.__use = False
         self.__name = constants['name']
-        self._visible_name = constants['use']
+        self._visible_name = constants['name']
 
     def ask_use(self):
         self.__use = Optional().ask_use(constants['use'].format(self.__name))

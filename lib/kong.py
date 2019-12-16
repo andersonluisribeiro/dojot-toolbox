@@ -8,6 +8,7 @@ from .constants import kong as constants
 
 import getpass
 
+
 class Kong(Component):
 
     def __init__(self):
@@ -18,24 +19,28 @@ class Kong(Component):
         self.__pg_password = "kong"
         self.__name = constants['name']
         self._visible_name = constants['name']
-        self.__authenticable = Authenticable()         
+        self.__authenticable = Authenticable()
         self.__quantifiable = Quantifiable()
 
     def ask_req_per_minute(self):
-        self.__req_per_minute = self.__quantifiable.ask_quantity(constants['req_per_minute'].format( self.__req_per_minute ), self.__req_per_minute )
+        self.__req_per_minute = self.__quantifiable.ask_quantity(
+            constants['req_per_minute'].format(self.__req_per_minute), self.__req_per_minute)
         return self
 
     def ask_req_per_hour(self):
-        self.__req_per_hour = self.__quantifiable.ask_quantity(constants['req_per_hour'].format( self.__req_per_hour ), self.__req_per_hour)
+        self.__req_per_hour = self.__quantifiable.ask_quantity(
+            constants['req_per_hour'].format(self.__req_per_hour), self.__req_per_hour)
         return self
 
     def ask_pg_username(self):
-        self.__pg_username = self.__authenticable.ask_username(constants['pg_user'].format( self.__name, self.__pg_username ), self.__pg_username)
+        self.__pg_username = self.__authenticable.ask_username(
+            constants['pg_user'].format(self.__name, self.__pg_username), self.__pg_username)
         return self
 
     def ask_pg_password(self):
-        self.__pg_password = self.__authenticable.ask_password(constants['pg_password'].format( self.__name, self.__pg_password ), self.__pg_password)
-        return self   
+        self.__pg_password = self.__authenticable.ask_password(
+            constants['pg_password'].format(self.__name, self.__pg_password), self.__pg_password)
+        return self
 
     @property
     def vars(self):

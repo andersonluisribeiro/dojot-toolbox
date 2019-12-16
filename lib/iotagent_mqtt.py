@@ -40,5 +40,5 @@ class IoTAgentMQTT(Component):
     def vars(self):
         self._vars['dojot_iotagent_mosca_use'] = self.__use
         self._vars['dojot_iotagent_mosca_replicas'] = self.__replicas
-        self._vars['dojot_insecure_mqtt'] = self.__use_insecure_mqtt
+        self._vars['dojot_insecure_mqtt'] = str(self.__use_insecure_mqtt).lower()
         return self._vars

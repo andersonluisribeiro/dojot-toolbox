@@ -10,16 +10,6 @@ class AuthTest(unittest.TestCase):
     def setUp(self):
         self.auth = Auth()
 
-    def test_ask_how_many_replicas(self):
-        with patch('builtins.input', return_value="3"):
-            vars = self.auth.ask_how_many_replicas().vars
-            self.assertEqual(vars['dojot_auth_replicas'], 3)    
-
-    def test_ask_how_many_replicas_using_default(self):
-        with patch('builtins.input', return_value=""):
-            vars = self.auth.ask_how_many_replicas().vars
-            self.assertEqual(vars['dojot_auth_replicas'], 1)
-
     def test_ask_pg_username(self):
         with patch('builtins.input', return_value="root"):
             vars = self.auth.and_pg_username().vars

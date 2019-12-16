@@ -41,12 +41,12 @@ class IoTAgentMoscaTest(unittest.TestCase):
     def test_ask_use_unsecured_mode(self):
         with patch('builtins.input', return_value="y"):
             vars = self.iotagent.and_use_insecure_mqtt().vars
-            self.assertEqual(vars['dojot_insecure_mqtt'], True)
+            self.assertEqual(vars['dojot_insecure_mqtt'], 'true')
 
     def test_ask_use_unsecured_mode_using_default(self):
         with patch('builtins.input', return_value=""):
             vars = self.iotagent.and_use_insecure_mqtt().vars
-            self.assertEqual(vars['dojot_insecure_mqtt'], False)  
+            self.assertEqual(vars['dojot_insecure_mqtt'], 'false')  
 
     def test_ask_use_unsecured_mode_when_will_not_be_used(self):
         with patch('builtins.input', return_value="n"):
@@ -54,7 +54,7 @@ class IoTAgentMoscaTest(unittest.TestCase):
 
         with patch('builtins.input', return_value="y"):
             vars = self.iotagent.and_use_insecure_mqtt().vars
-            self.assertEqual(vars['dojot_insecure_mqtt'], False)                                  
+            self.assertEqual(vars['dojot_insecure_mqtt'], 'false')                                  
 
 
 if __name__ == '__main__':
