@@ -17,6 +17,7 @@ class MongoDB(Component):
         self.__super_username = "mongodb"
         self.__super_password = "mongodb"
         self.__persistence_time = 168
+        self.__persistence_use = True
         self.__use_persistent_volume = False
         self.__volume_size = 10
         self.__authenticable = Authenticable()
@@ -36,20 +37,27 @@ class MongoDB(Component):
             question, self.__super_password)
         return self
 
+    def and_if_messages_will_be_persisted(self):
+        self.__persistence_use = self.__optional.ask_use(
+            constants['persistence_use'], self.__persistence_use)
+        return self
+
     def and_persistence_time(self):
-        question = constants['persistence_time'].format(
-            self.__persistence_time)
-        self.__persistence_time = self.__quantifiable.ask_quantity(
-            question, default=self.__persistence_time)
+        if self.__persistence_use:
+            question = constants['persistence_time'].format(
+                self.__persistence_time)
+            self.__persistence_time = self.__quantifiable.ask_quantity(
+                question, default=self.__persistence_time)
         return self
 
     def and_if_use_persistent_volume(self):
-        self.__use_persistent_volume = self.__optional.ask_use(
-            constants['use_persistent_volume'])
+        if self.__persistence_use:
+            self.__use_persistent_volume = self.__optional.ask_use(
+                constants['use_persistent_volume'])
         return self
 
     def and_volume_size(self):
-        if self.__use_persistent_volume:
+        if  self.__persistence_use and self.__use_persistent_volume:
             question = constants['volume_size'].format(self.__volume_size)
             self.__volume_size = self.__quantifiable.ask_quantity(question)
         return self
@@ -61,4 +69,5 @@ class MongoDB(Component):
         self._vars['dojot_mongodb_persistent_volumes'] = self.__use_persistent_volume
         self._vars['dojot_mongodb_volume_size'] = self.__volume_size
         self._vars['dojot_persister_persistence_time'] = self.__persistence_time
+        self._vars['dojot_persister_use'] = self.__persistence_use
         return self._vars

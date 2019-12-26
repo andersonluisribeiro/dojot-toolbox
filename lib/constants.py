@@ -69,6 +69,7 @@ mongo = dict(
     super_user = "Super MongoDB username [{}]: ",
     super_password = "Super MongoDB password [{}]: ",
     persistence_time = "How many hours would you like the data to be kept in MongoDB (0 for indeterminate) ? [{}]: ",
+    persistence_use = "Do you want to persist messages in MongoDB? (y/n) [y]: ",
     use_persistent_volume = "Do you want to use persistent volumes for MongoDB?: (y/n) [n]: ",
     volume_size = "What is the volume size in GB for MongoDB? [{}]: "
 )

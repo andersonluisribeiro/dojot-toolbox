@@ -50,6 +50,7 @@ if installer.is_for_configuration():
             .show_name() \
             .ask_super_username() \
             .and_super_password() \
+            .and_if_messages_will_be_persisted() \
             .and_persistence_time() \
             .and_if_use_persistent_volume() \
             .and_volume_size()
