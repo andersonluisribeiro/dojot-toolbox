@@ -6,5 +6,5 @@ class Component:
         self._visible_name = ""
 
     def show_name(self):
-        print(colored("\n\n{}".format(self._visible_name), 'green'))
+        print(colored("\n\n{}".format(self._visible_name), 'white', attrs=['bold']))
         return self

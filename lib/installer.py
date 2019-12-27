@@ -7,12 +7,14 @@ import getpass
 from termcolor import colored
 from pyfiglet import Figlet
 from . import Gui, Cron, Repository
+from .ansible_cli import AnsibleCLI
 from .constants import installer as constants
 
 class Installer():
     def __init__(self, argv):
         self.vars = {}
         self.argv = argv
+        self.ansible_cli = AnsibleCLI()
 
     def is_for_configuration(self):
         return len(self.argv) > 1 and self.argv[1] == "configure"  
@@ -25,8 +27,8 @@ class Installer():
 
     def say_wellcome(self):
         f = Figlet(font='speed')
-        print(colored(f.renderText('dojot'), 'red'))
-        print(colored("Welcome to Dojot CLI", 'green', attrs=['bold']))
+        print(colored(f.renderText('dojot'), 'white'))
+        print(colored("Welcome to Dojot CLI", 'white', attrs=['bold']))
 
     def say_thanks(self):
         print("\n\nThanks!\n")
@@ -52,20 +54,14 @@ class Installer():
         return self        
 
     def encrypt_vars_file(self):
-        vault = "ansible-vault encrypt --vault-id ./ansible-dojot/credential ansible-dojot/vars.yaml"
-        os.system(vault) == 0 
+        self.ansible_cli.encrypt_vars_file()
     
-    def call_playbook(self):
-        playbook = "ansible-playbook -u cpqd -K -k -i ansible-dojot/inventories/example_local ansible-dojot/deploy.yaml -e @ansible-dojot/vars.yaml --vault-id ansible-dojot/credential"
-        if os.system(playbook) == 0:
-            os.remove("ansible-dojot/credential")
-
     def call_ansible(self):
         self.create_credentials_file()
         self.encrypt_vars_file()
         if self.should_deploy():
-            print(constants["deploy_dojot"])
-            self.call_playbook()
+            print('\n')
+            self.ansible_cli.run_playbook()
         
 
         

@@ -2,7 +2,7 @@ import time
 from progress.spinner import Spinner
 from threading import Thread
 
-class Progress(Thread):
+class SpinnerProgress(Thread):
 
     def __init__(self, phrase):
         self.__running = True

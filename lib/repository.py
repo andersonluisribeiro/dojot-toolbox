@@ -1,7 +1,7 @@
 import os
 import sys
 import time
-from .progress import Progress
+from .spinner_progress import SpinnerProgress
 from git import Repo, Git, GitCommandError
 from .constants import repository as constants
 
@@ -23,7 +23,7 @@ class Repository:
         sys.exit(0)
 
     def make_clone(self):
-        progress = Progress(constants['clonning_repository'])
+        progress = SpinnerProgress(constants['clonning_repository'])
         try:
             progress.start()
             Git(".").clone(constants['repository_url'])
