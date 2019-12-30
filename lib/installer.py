@@ -16,11 +16,26 @@ class Installer():
         self.argv = argv
         self.ansible_cli = AnsibleCLI()
 
-    def is_for_configuration(self):
-        return len(self.argv) > 1 and self.argv[1] == "configure"  
+    def should_configure(self):
+        if len(self.argv) == 2:
+            return self.argv[1] == "configure"
+
+        if len(self.argv) == 3:
+            return self.argv[2] == "--configure"     
+
+        return False  
 
     def should_deploy(self):
-        return len(self.argv) > 2 and self.argv[2] == "--deploy"           
+        if len(self.argv) == 2:
+            return self.argv[1] == "deploy"
+
+        return False
+
+    def should_undeploy(self):
+        if len(self.argv) == 2:
+            return self.argv[1] == "undeploy"
+
+        return False        
 
     def clone_repository(self):
         Repository().clone()          
@@ -56,12 +71,13 @@ class Installer():
     def encrypt_vars_file(self):
         self.ansible_cli.encrypt_vars_file()
     
-    def call_ansible(self):
-        self.create_credentials_file()
-        self.encrypt_vars_file()
-        if self.should_deploy():
-            print('\n')
-            self.ansible_cli.run_playbook()
+    def run_playbook(self):
+        print('\n')
+        self.ansible_cli.run_playbook("ansible-dojot/vars.yaml")
+
+    def undeploy(self):
+        print('\n')
+        self.ansible_cli.undeploy()    
         
 
         

@@ -10,11 +10,10 @@ from pathlib import Path
 
 class InstallerTest(unittest.TestCase):
 
-    def read_file(self):
-        file = open('ansible-dojot/vars.yaml')
-        content = file.read()
-        file.close()
-        return content
+    def test_should_configure(self):
+        argv = ['main.py', 'configure']
+        installer = Installer(argv)
+        self.assertTrue(installer.should_configure())
 
     # def test_create_vars_file_from_services(self):
     #     installer = Installer([])

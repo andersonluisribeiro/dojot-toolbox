@@ -1,12 +1,13 @@
 import sys
 from lib import Installer, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, MongoDB, IoTAgentMQTT, IoTAgentLWM2M
 
-
 installer = Installer(sys.argv)
 
-if installer.is_for_configuration():
+installer.say_wellcome()
 
-    try:
+try:
+
+    if installer.should_configure():
 
         installer.say_wellcome()
         installer.clone_repository()
@@ -76,10 +77,22 @@ if installer.is_for_configuration():
         installer \
             .create_vars_file_from(
                 [kafka, kong, devm, auth, postgres, mongo, gui, mqtt, lwm2m, cron]
-            ) \
-            .call_ansible()
+            )
 
-        installer.say_thanks()
+        installer.create_credentials_file()
 
-    except KeyboardInterrupt:
-        installer.say_bye()
+        installer.encrypt_vars_file()    
+            
+
+    if installer.should_deploy():
+
+        installer.run_playbook()    
+
+    if installer.should_undeploy():
+
+        installer.undeploy()    
+
+    installer.say_thanks()
+
+except KeyboardInterrupt:
+    installer.say_bye()

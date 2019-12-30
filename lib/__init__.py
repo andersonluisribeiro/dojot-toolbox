@@ -19,3 +19,4 @@ from .persistent import Persistent
 from .installer import Installer
 from .ansible_cli import AnsibleCLI
 from .spinner_progress import SpinnerProgress
+from .main import Main
