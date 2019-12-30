@@ -5,14 +5,13 @@ class Main:
 
     def run(self):
         installer = Installer(sys.argv)
-
+        
         installer.say_wellcome()
 
         try:
 
             if installer.should_configure():
 
-                installer.say_wellcome()
                 installer.clone_repository()
 
                 kafka = Kafka() \

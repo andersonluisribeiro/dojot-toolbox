@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
      name='dojot-cli',  
-     version='0.0.6',
+     version='0.0.7',
      scripts=['dojot'],
      author="Anderson Luis Ribeiro",
      author_email="anderson.luis.rib@gmail.com",
@@ -24,6 +24,7 @@ setuptools.setup(
         'PyYAML==5.1.2',
         'gitpython==3.0.5',
         'termcolor==1.1.0',
-        'progress==1.5'
+        'progress==1.5',
+        'ansible => 2.9.2'
     ]
  )
