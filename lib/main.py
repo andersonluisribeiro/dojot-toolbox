@@ -4,98 +4,108 @@ from . import Installer, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, 
 class Main:
 
     def run(self):
+        print(sys.argv)
         installer = Installer(sys.argv)
+
+        if installer.should_show_status():
+
+            installer.show_status()
+
+        else:   
         
-        installer.say_wellcome()
+            installer.say_wellcome()
 
-        try:
+            try:
 
-            if installer.should_configure():
+                if installer.should_configure():
 
-                installer.clone_repository()
+                    installer.clone_repository()
 
-                kafka = Kafka() \
-                    .show_name() \
-                    .ask_persistence_time() \
-                    .and_if_use_persistent_volume() \
-                    .and_volume_size()
+                    kafka = Kafka() \
+                        .show_name() \
+                        .ask_persistence_time() \
+                        .and_if_use_persistent_volume() \
+                        .and_volume_size()
 
-                kong = Kong() \
-                    .show_name() \
-                    .ask_req_per_minute() \
-                    .ask_req_per_hour() \
-                    .ask_pg_username() \
-                    .ask_pg_password()
+                    kong = Kong() \
+                        .show_name() \
+                        .ask_req_per_minute() \
+                        .ask_req_per_hour() \
+                        .ask_pg_username() \
+                        .ask_pg_password()
 
-                devm = DeviceManager() \
-                    .show_name() \
-                    .ask_pg_username() \
-                    .ask_pg_password()
+                    devm = DeviceManager() \
+                        .show_name() \
+                        .ask_pg_username() \
+                        .ask_pg_password()
 
-                auth = Auth() \
-                    .show_name() \
-                    .and_pg_username() \
-                    .and_pg_password() \
-                    .ask_if_should_send_mail() \
-                    .and_smtp_host() \
-                    .and_smtp_username() \
-                    .and_smtp_password() \
-                    .and_password_reset_link()
+                    auth = Auth() \
+                        .show_name() \
+                        .and_pg_username() \
+                        .and_pg_password() \
+                        .ask_if_should_send_mail() \
+                        .and_smtp_host() \
+                        .and_smtp_username() \
+                        .and_smtp_password() \
+                        .and_password_reset_link()
 
-                postgres = Postgres() \
-                    .show_name() \
-                    .ask_super_username() \
-                    .and_super_password() \
-                    .and_if_use_persistent_volume() \
-                    .and_volume_size()
+                    postgres = Postgres() \
+                        .show_name() \
+                        .ask_super_username() \
+                        .and_super_password() \
+                        .and_if_use_persistent_volume() \
+                        .and_volume_size()
 
-                mongo = MongoDB() \
-                    .show_name() \
-                    .ask_super_username() \
-                    .and_super_password() \
-                    .and_if_messages_will_be_persisted() \
-                    .and_persistence_time() \
-                    .and_if_use_persistent_volume() \
-                    .and_volume_size()
+                    mongo = MongoDB() \
+                        .show_name() \
+                        .ask_super_username() \
+                        .and_super_password() \
+                        .and_if_messages_will_be_persisted() \
+                        .and_persistence_time() \
+                        .and_if_use_persistent_volume() \
+                        .and_volume_size()
 
-                gui = Gui() \
-                    .show_name() \
-                    .ask_use()
+                    gui = Gui() \
+                        .show_name() \
+                        .ask_use()
 
-                mqtt = IoTAgentMQTT() \
-                    .show_name() \
-                    .ask_use() \
-                    .and_replicas() \
-                    .and_use_insecure_mqtt()   
+                    mqtt = IoTAgentMQTT() \
+                        .show_name() \
+                        .ask_use() \
+                        .and_replicas() \
+                        .and_use_insecure_mqtt()   
 
-                lwm2m = IoTAgentLWM2M() \
-                    .show_name() \
-                    .ask_use()
+                    lwm2m = IoTAgentLWM2M() \
+                        .show_name() \
+                        .ask_use()
 
-                cron = Cron() \
-                    .show_name() \
-                    .ask_use()
+                    cron = Cron() \
+                        .show_name() \
+                        .ask_use()
 
-                installer \
-                    .create_vars_file_from(
-                        [kafka, kong, devm, auth, postgres, mongo, gui, mqtt, lwm2m, cron]
-                    )
+                    installer \
+                        .create_vars_file_from(
+                            [kafka, kong, devm, auth, postgres, mongo, gui, mqtt, lwm2m, cron]
+                        )
 
-                installer.create_credentials_file()
+                    installer.create_credentials_file()
 
-                installer.encrypt_vars_file()    
-                    
+                    installer.encrypt_vars_file()    
+                        
 
-            if installer.should_deploy():
+                if installer.should_deploy():
 
-                installer.run_playbook()    
+                    installer.run_playbook()    
 
-            if installer.should_undeploy():
+                if installer.should_undeploy():
 
-                installer.undeploy()    
+                    installer.undeploy()  
 
-            installer.say_thanks()
+                if installer.should_show_status():
 
-        except KeyboardInterrupt:
-            installer.say_bye()
+                    installer.show_status()      
 
+                installer.say_thanks()
+
+            except KeyboardInterrupt:
+                installer.say_bye()

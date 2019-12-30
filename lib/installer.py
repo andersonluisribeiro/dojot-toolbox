@@ -17,13 +17,17 @@ class Installer():
         self.ansible_cli = AnsibleCLI()
 
     def should_configure(self):
-        if len(self.argv) >= 2:
+        if len(self.argv) == 2:
             return self.argv[1] == "configure"
 
-        if len(self.argv) >= 3:
+        if len(self.argv) == 3:
             return self.argv[2] == "--configure"     
 
         return False  
+
+    def should_show_status(self):
+        if len(self.argv) == 2:
+            return self.argv[1] == "status"
 
     def should_deploy(self):
         if len(self.argv) >= 2:
@@ -77,7 +81,11 @@ class Installer():
 
     def undeploy(self):
         print('\n')
-        self.ansible_cli.undeploy()    
+        self.ansible_cli.undeploy()  
+
+    def show_status(self):
+        status = "watch kubectl get pods -n dojot"
+        os.system(status) == 0      
         
 
         
