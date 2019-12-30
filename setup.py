@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
      name='dojot-cli',  
-     version='0.0.7',
+     version='0.0.8',
      scripts=['dojot'],
      author="Anderson Luis Ribeiro",
      author_email="anderson.luis.rib@gmail.com",
