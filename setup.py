@@ -25,6 +25,6 @@ setuptools.setup(
         'gitpython==3.0.5',
         'termcolor==1.1.0',
         'progress==1.5',
-        'ansible => 2.9.2'
+        'ansible==2.9.2'
     ]
  )
