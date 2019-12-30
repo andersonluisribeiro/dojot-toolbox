@@ -17,22 +17,22 @@ class Installer():
         self.ansible_cli = AnsibleCLI()
 
     def should_configure(self):
-        if len(self.argv) == 2:
+        if len(self.argv) >= 2:
             return self.argv[1] == "configure"
 
-        if len(self.argv) == 3:
+        if len(self.argv) >= 3:
             return self.argv[2] == "--configure"     
 
         return False  
 
     def should_deploy(self):
-        if len(self.argv) == 2:
+        if len(self.argv) >= 2:
             return self.argv[1] == "deploy"
 
         return False
 
     def should_undeploy(self):
-        if len(self.argv) == 2:
+        if len(self.argv) >= 2:
             return self.argv[1] == "undeploy"
 
         return False        
