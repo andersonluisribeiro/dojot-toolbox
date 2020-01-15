@@ -4,7 +4,6 @@ from . import Installer, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, 
 class Main:
 
     def run(self):
-        print(sys.argv)
         installer = Installer(sys.argv)
 
         if installer.should_show_status():
