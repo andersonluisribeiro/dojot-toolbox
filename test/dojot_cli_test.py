@@ -3,16 +3,16 @@ sys.path.append("..")
 
 import unittest
 import os
-from lib import Installer, Component, Gui, Cron
+from lib import DojotCLI, Component, Gui, Cron
 from unittest.mock import MagicMock, patch
 from pathlib import Path
 
 
-class InstallerTest(unittest.TestCase):
+class DojotCLITest(unittest.TestCase):
 
     def test_should_configure(self):
         argv = ['main.py', 'configure']
-        installer = Installer(argv)
+        installer = DojotCLI(argv)
         self.assertTrue(installer.should_configure())
 
     # def test_create_vars_file_from_services(self):

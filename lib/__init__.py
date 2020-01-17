@@ -17,7 +17,7 @@ from .k8s_cli import K8sCLI
 from .repository import Repository
 from .persister import Persister
 from .persistent import Persistent
-from .installer import Installer
+from .dojot_cli import DojotCLI
 from .ansible_cli import AnsibleCLI
 from .spinner_progress import SpinnerProgress
 from .main import Main

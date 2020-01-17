@@ -1,25 +1,25 @@
 import sys
-from . import Installer, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, MongoDB, IoTAgentMQTT, IoTAgentLWM2M
+from . import DojotCLI, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, MongoDB, IoTAgentMQTT, IoTAgentLWM2M
 
 class Main:
 
     def run(self):
-        installer = Installer(sys.argv)
+        cli = DojotCLI(sys.argv)
 
         #TODO: verificar se o kubernetes está instalado
 
-        if installer.should_show_status():
+        if cli.should_show_status():
 
-            installer.show_status()
+            cli.show_status()
 
         else:   
         
-            installer.say_wellcome()
+            cli.say_wellcome()
             try:
 
-                if installer.should_configure():
+                if cli.should_configure():
 
-                    installer.clone_repository()
+                    cli.clone_repository()
 
                     kafka = Kafka() \
                         .show_name() \
@@ -83,30 +83,30 @@ class Main:
                         .show_name() \
                         .ask_use()
 
-                    installer \
+                    cli \
                         .create_vars_file_from(
                             [kafka, kong, devm, auth, postgres, mongo, gui, mqtt, lwm2m, cron]
                         )
 
-                    installer.create_credentials_file()
+                    cli.create_credentials_file()
 
-                    installer.encrypt_vars_file()    
+                    cli.encrypt_vars_file()    
                         
 
-                if installer.should_deploy():
+                if cli.should_deploy():
 
-                    installer.run_playbook()    
+                    cli.run_playbook()    
 
-                if installer.should_undeploy():
+                if cli.should_undeploy():
 
-                    installer.undeploy()  
+                    cli.undeploy()  
 
-                if installer.should_show_status():
+                if cli.should_show_status():
 
-                    installer.show_status()      
+                    cli.show_status()      
 
-                installer.say_thanks()
+                cli.say_thanks()
 
             except KeyboardInterrupt:
-                installer.say_bye()
+                cli.say_bye()
                           
