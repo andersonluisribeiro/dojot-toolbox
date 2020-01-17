@@ -13,6 +13,7 @@ from .iotagent_mqtt import IoTAgentMQTT
 from .iotagent_lwm2m import IoTAgentLWM2M
 from .authenticable import Authenticable
 from .quantifiable import Quantifiable
+from .k8s_cli import K8sCLI
 from .repository import Repository
 from .persister import Persister
 from .persistent import Persistent

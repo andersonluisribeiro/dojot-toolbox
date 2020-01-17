@@ -23,6 +23,7 @@ class IoTAgentMQTT(Component):
             constants['use'], default=True)
         return self
 
+    #TODO: verificar se serviço é escalável
     def and_replicas(self):
         if self.__use:
             question = constants['replicas'].format(self.__replicas)

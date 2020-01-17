@@ -60,6 +60,7 @@ class Auth(Component):
                 constants['smtp_password'], self.__pg_password)
         return self
 
+    #TODO: montar o link automaticamente
     def and_password_reset_link(self):
         if self.__send_email:
             link = input(constants['password_reset_link'])

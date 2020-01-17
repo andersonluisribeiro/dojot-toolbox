@@ -17,6 +17,7 @@ from ansible import context
 import ansible.constants as C
 
 
+#TODO: Realizar testes na classe inteira
 class ResultCallback(CallbackBase):
 
     def __init__(self, bar):

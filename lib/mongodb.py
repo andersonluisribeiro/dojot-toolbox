@@ -50,6 +50,7 @@ class MongoDB(Component):
                 question, default=self.__persistence_time)
         return self
 
+    #TODO: verificar se tem volume para persistir
     def and_if_use_persistent_volume(self):
         if self.__persistence_use:
             self.__use_persistent_volume = self.__optional.ask_use(

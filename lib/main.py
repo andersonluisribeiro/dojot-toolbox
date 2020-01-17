@@ -6,6 +6,8 @@ class Main:
     def run(self):
         installer = Installer(sys.argv)
 
+        #TODO: verificar se o kubernetes está instalado
+
         if installer.should_show_status():
 
             installer.show_status()
@@ -13,7 +15,6 @@ class Main:
         else:   
         
             installer.say_wellcome()
-
             try:
 
                 if installer.should_configure():
@@ -108,3 +109,4 @@ class Main:
 
             except KeyboardInterrupt:
                 installer.say_bye()
+                          

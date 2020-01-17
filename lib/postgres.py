@@ -35,6 +35,7 @@ class Postgres(Component):
             question, self.__super_password)
         return self
 
+    #TODO: verificar se tem volume para persistir
     def and_if_use_persistent_volume(self):
         self.__use_persistent_volume = self.__optional.ask_use(
             constants['use_persistent_volume'])

@@ -10,6 +10,7 @@ from . import Gui, Cron, Repository
 from .ansible_cli import AnsibleCLI
 from .constants import installer as constants
 
+# TODO: fazer testes na classe toda
 class Installer():
     def __init__(self, argv):
         self.vars = {}
