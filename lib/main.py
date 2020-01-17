@@ -6,7 +6,7 @@ class Main:
     def run(self):
         cli = DojotCLI(sys.argv)
 
-        #TODO: verificar se o kubernetes está instalado
+        cli.check_requirements()
 
         if cli.should_show_status():
 

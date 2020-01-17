@@ -1,6 +1,7 @@
 
 installer = dict(
-    deploy_dojot = "\n\nSet your credentials for dojot deployment on localhost"
+    deploy_dojot = "\n\nSet your credentials for dojot deployment on localhost",
+    k8s_not_installed =  "\n\nError to load k8s, check your cluster."
 )
 
 repository = dict(

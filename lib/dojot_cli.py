@@ -6,7 +6,7 @@ import sys
 import getpass
 from termcolor import colored
 from pyfiglet import Figlet
-from . import Gui, Cron, Repository
+from . import Gui, Cron, Repository, K8sCLI
 from .ansible_cli import AnsibleCLI
 from .constants import installer as constants
 
@@ -16,6 +16,13 @@ class DojotCLI():
         self.vars = {}
         self.argv = argv
         self.ansible_cli = AnsibleCLI()
+        self.k8s_cli = K8sCLI()
+
+    def check_requirements(self):
+        if not self.k8s_cli.is_installed():
+            self.say_k8s_not_installed()
+            self.say_thanks()
+            sys.exit()
 
     def should_configure(self):
         if len(self.argv) == 2:
@@ -54,7 +61,10 @@ class DojotCLI():
         print("\n\nThanks!\n")
 
     def say_bye(self):
-        print("\n\nBye!\n")         
+        print("\n\nBye!\n")      
+
+    def say_k8s_not_installed(self):
+        print(constants["k8s_not_installed"])       
 
     def create_credentials_file(self):
         with open(r'ansible-dojot/credential', 'w') as file:
