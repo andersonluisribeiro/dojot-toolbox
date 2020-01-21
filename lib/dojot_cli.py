@@ -96,7 +96,8 @@ class DojotCLI():
 
     def show_status(self):
         status = "watch kubectl get pods -n dojot"
-        os.system(status) == 0      
+        if os.system(status) == 0:
+            sys.exit()      
         
 
         
