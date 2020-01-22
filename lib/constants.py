@@ -49,12 +49,12 @@ auth = dict(
 
 cron = dict(
     name = "Cron",
-    use = "Would you like to add {} ? (y/n) [n]: "
+    use = "Would you like to deploy {} ? (y/n) [n]: "
 )
 
 gui = dict(
     name = "GUI",
-    use = "Would you like to add {} ? (y/n) [y]: "
+    use = "Would you like to deploy {} ? (y/n) [y]: "
 )
 
 postgres = dict(
@@ -83,12 +83,12 @@ persister = dict(
 
 iotagent_mqtt = dict(
     name = "IoT Agent MQTT",
-    use = "Would you like to add IoT Agent MQTT? (y/n) [y]: ",
+    use = "Would you like to deploy IoT Agent MQTT? (y/n) [y]: ",
     use_insecure_mqtt = "Do you want to enable insecure mode for IoT Agent MQTT? (y/n) [n]: ",
     replicas = "How many instances would you like for IoT Agent MQTT? [{}]: "
 )
 
 iotagent_lwm2m = dict(
     name = "IoT Agent LWM2M",
-    use = "Would you like to add IoT Agent LWM2M? (y/n) [y]: "
+    use = "Would you like to deploy IoT Agent LWM2M? (y/n) [y]: "
 )
