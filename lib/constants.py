@@ -75,6 +75,12 @@ mongo = dict(
     volume_size = "What is the volume size in GB for MongoDB? [{}]: "
 )
 
+persister = dict(
+    name = "Persistence Service",
+    persistence_time = "How many hours would you like device messages to be kept in MongoDB (0 for indeterminate) ? [{}]: ",
+    persistence_use = "Do you want to keep device messages in MongoDB? (y/n) [y]: "
+)
+
 iotagent_mqtt = dict(
     name = "IoT Agent MQTT",
     use = "Would you like to add IoT Agent MQTT? (y/n) [y]: ",

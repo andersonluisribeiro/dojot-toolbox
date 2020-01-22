@@ -5,10 +5,11 @@ from .auth_test import AuthTest
 from .authenticable_test import AuthenticableTest
 from .cron_test import CronTest
 from .gui_test import GuiTest
-from .installer_test import InstallerTest
+# from .installer_test import InstallerTest
 from .kafka_test import KafkaTest
 from .kong_test import KongTest
 from .mongodb_test import MongoDBTest
+from .persister_test import PersisterTest
 from .optional_test import OptionalTest
 from .persistent_test import PersistentTest
 from .repository_test import RepositoryTest

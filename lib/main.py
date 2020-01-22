@@ -1,5 +1,5 @@
 import sys
-from . import DojotCLI, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, MongoDB, IoTAgentMQTT, IoTAgentLWM2M
+from . import DojotCLI, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, MongoDB, Persister, IoTAgentMQTT, IoTAgentLWM2M
 
 class Main:
 
@@ -53,12 +53,15 @@ class Main:
                     .and_if_use_persistent_volume() \
                     .and_volume_size()
 
+                persister = Persister() \
+                    .show_name() \
+                    .ask_if_messages_will_be_persisted() \
+                    .and_persistence_time()
+
                 mongo = MongoDB() \
                     .show_name() \
                     .ask_super_username() \
                     .and_super_password() \
-                    .and_if_messages_will_be_persisted() \
-                    .and_persistence_time() \
                     .and_if_use_persistent_volume() \
                     .and_volume_size()
 
@@ -82,7 +85,7 @@ class Main:
 
                 cli \
                     .create_vars_file_from(
-                        [kafka, kong, devm, auth, postgres, mongo, gui, mqtt, lwm2m, cron]
+                        [kafka, kong, devm, auth, postgres, persister, mongo, gui, mqtt, lwm2m, cron]
                     )
 
                 cli.create_credentials_file()
