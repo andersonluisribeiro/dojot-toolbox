@@ -72,7 +72,6 @@ class Main:
                 mqtt = IoTAgentMQTT() \
                     .show_name() \
                     .ask_use() \
-                    .and_replicas() \
                     .and_use_insecure_mqtt()   
 
                 lwm2m = IoTAgentLWM2M() \
