@@ -9,7 +9,7 @@ class Kafka(Component):
     def __init__(self):
         super().__init__()
         self._visible_name = constants['name']
-        self.__persistence_time = 168
+        self.__persistence_time = 0
         self.__use_persistent_volume = False
         self.__volume_size = 10
         self.__optional = Optional()
