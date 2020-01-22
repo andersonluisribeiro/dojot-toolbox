@@ -6,7 +6,7 @@ class Gui(Component):
 
     def __init__(self):
         super().__init__()
-        self.__use = False
+        self.__use = True
         self.__name = constants['name']
         self._visible_name = constants['name']
 

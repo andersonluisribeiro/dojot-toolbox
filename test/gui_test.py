@@ -8,7 +8,7 @@ class GuiTest(unittest.TestCase):
 
     def test_return_vars(self):
         gui = Gui()
-        self.assertEqual(gui.vars['dojot_gui_use'], False)
+        self.assertEqual(gui.vars['dojot_gui_use'], True)
 
 
 if __name__ == '__main__':

@@ -54,7 +54,7 @@ cron = dict(
 
 gui = dict(
     name = "GUI",
-    use = "Would you like to add {} ? (y/n) [n]: "
+    use = "Would you like to add {} ? (y/n) [y]: "
 )
 
 postgres = dict(
