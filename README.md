@@ -1,4 +1,4 @@
-# A CLI for dojot
+# A toolbox for dojot
 
 ## Settings to build de pip package
 

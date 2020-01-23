@@ -4,15 +4,15 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-     name='dojot-cli',  
-     version='0.0.10',
+     name='dojot-toolbox',  
+     version='0.0.2',
      scripts=['dojot'],
      author="Anderson Luis Ribeiro",
      author_email="anderson.luis.rib@gmail.com",
-     description="A CLI for dojot",
+     description="A toolbox for dojot",
      long_description=long_description,
      long_description_content_type="text/markdown",
-     url="https://github.com/andersonluisribeiro/dojot-cli",
+     url="https://github.com/andersonluisribeiro/dojot-toolbox",
      packages=setuptools.find_packages(),
      classifiers=[
          "Programming Language :: Python :: 3",
