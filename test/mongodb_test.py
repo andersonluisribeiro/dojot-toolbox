@@ -62,11 +62,13 @@ class MongoDBTest(unittest.TestCase):
         with patch('builtins.input', return_value="y"):
             vars = self.mongo.and_if_use_persistent_volume().vars
             self.assertEqual(vars['dojot_mongodb_persistent_volumes'], True)
+            self.assertEqual(vars['dojot_mongodb_local_persistent_volumes'], True)
 
     def test_ask_if_use_persistent_volume_using_default(self):
         with patch('builtins.input', return_value=""):
             vars = self.mongo.and_if_use_persistent_volume().vars
             self.assertEqual(vars['dojot_mongodb_persistent_volumes'], False)
+            self.assertEqual(vars['dojot_mongodb_local_persistent_volumes'], False)
 
     def test_ask_if_use_persistent_volume_when_messages_will_not_be_persisted(self):
         with patch('builtins.input', return_value="n"):

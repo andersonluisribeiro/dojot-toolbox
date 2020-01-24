@@ -92,3 +92,14 @@ iotagent_lwm2m = dict(
     name = "IoT Agent LWM2M",
     use = "Would you like to deploy IoT Agent LWM2M? (y/n) [y]: "
 )
+
+persistence = dict(
+    name = "Persistence of Services",
+    persistence_use = "Would you like to persist data for Postgres, MongoDB, Kafka and Minio? (y/n) [n]: ",
+    persistence_confirmation = "\nDo you really like to persist data for Postgres, MongoDB, Kafka and Minio? (y/n) [n]: ",
+    postgres = "Postgres volume size (you have {0:.2f} GB free) [{1}]: ",
+    mongodb = "MongoDB volume size (you have {0:.2f} GB free) [{1}]: ",
+    kafka = "Apache Kafka volume size (you have {}GB free) [{}]: ",
+    minio = "Minio volume size (you have {}GB free) [{}]: "
+)
+

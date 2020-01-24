@@ -34,11 +34,13 @@ class PostgresTest(unittest.TestCase):
         with patch('builtins.input', return_value="y"):
             vars = self.postgres.and_if_use_persistent_volume().vars
             self.assertEqual(vars['dojot_psql_persistent_volumes'], True)
+            self.assertEqual(vars['dojot_psql_local_persistent_volumes'], True)
 
     def test_ask_if_use_persistent_volume_using_default(self):
         with patch('builtins.input', return_value=""):
             vars = self.postgres.and_if_use_persistent_volume().vars
-            self.assertEqual(vars['dojot_psql_persistent_volumes'], False)                    
+            self.assertEqual(vars['dojot_psql_persistent_volumes'], False) 
+            self.assertEqual(vars['dojot_psql_local_persistent_volumes'], False)                    
 
     def test_ask_volume_size_when_use_volume(self):
         with patch('builtins.input', return_value="y"):

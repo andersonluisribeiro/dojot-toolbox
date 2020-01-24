@@ -45,6 +45,7 @@ class Postgres(Component):
         if self.__use_persistent_volume:
             question = constants['volume_size'].format(self.__volume_size)
             self.__volume_size = self.__quantifiable.ask_quantity(question)
+            
         return self
 
     @property
@@ -52,5 +53,6 @@ class Postgres(Component):
         self._vars['dojot_psql_super_user'] = self.__super_username
         self._vars['dojot_psql_super_passwd'] = self.__super_password
         self._vars['dojot_psql_persistent_volumes'] = self.__use_persistent_volume
+        self._vars['dojot_psql_local_persistent_volumes'] = self.__use_persistent_volume
         self._vars['dojot_psql_volume_size'] = self.__volume_size
         return self._vars

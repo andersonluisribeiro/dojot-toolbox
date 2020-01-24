@@ -1,5 +1,5 @@
 import sys
-from . import DojotCLI, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, MongoDB, Persister, IoTAgentMQTT, IoTAgentLWM2M
+from . import DojotCLI, Kafka, Gui, Cron, Kong, DeviceManager, Auth, Postgres, MongoDB, Persister, IoTAgentMQTT, IoTAgentLWM2M, Disk, Persistence
 
 class Main:
 
@@ -82,9 +82,13 @@ class Main:
                     .show_name() \
                     .ask_use()
 
+                persistence = Persistence() \
+                    .show_name() \
+                    .ask_for_all_services()    
+
                 cli \
                     .create_vars_file_from(
-                        [kafka, kong, devm, auth, postgres, persister, mongo, gui, mqtt, lwm2m, cron]
+                        [kafka, kong, devm, auth, postgres, persister, mongo, gui, mqtt, lwm2m, cron, persistence]
                     )
 
                 cli.create_credentials_file()

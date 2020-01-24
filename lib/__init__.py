@@ -14,9 +14,11 @@ from .iotagent_lwm2m import IoTAgentLWM2M
 from .authenticable import Authenticable
 from .quantifiable import Quantifiable
 from .k8s_cli import K8sCLI
+from .disk import Disk
 from .repository import Repository
 from .persister import Persister
 from .persistent import Persistent
+from .persistence import Persistence
 from .dojot_cli import DojotCLI
 from .ansible_cli import AnsibleCLI
 from .spinner_progress import SpinnerProgress

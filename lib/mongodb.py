@@ -68,6 +68,7 @@ class MongoDB(Component):
         self._vars['dojot_mongodb_super_user'] = self.__super_username
         self._vars['dojot_mongodb_super_passwd'] = self.__super_password
         self._vars['dojot_mongodb_persistent_volumes'] = self.__use_persistent_volume
+        self._vars['dojot_mongodb_local_persistent_volumes'] = self.__use_persistent_volume
         self._vars['dojot_mongodb_volume_size'] = self.__volume_size
         self._vars['dojot_persister_persistence_time'] = self.__persistence_time
         self._vars['dojot_persister_use'] = self.__persistence_use
